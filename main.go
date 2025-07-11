@@ -1515,15 +1515,16 @@ func generateSuratPengembalian(form FormData, nomorUrut int, driveService *drive
 	pdfURL = fmt.Sprintf("https://drive.google.com/uc?id=%s", pdf.Id)
 	return pdfURL, docURL, nil
 }
+func handleRoot(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "✅ Backend Peminjaman Aktif di Railway!")
+}
 
 func main() {
+	http.HandleFunc("/", handleRoot) // Ini penting agar / tidak 404
 	http.HandleFunc("/pinjam", handlePinjam)
 	http.HandleFunc("/approve", handleApprove)
 	http.HandleFunc("/approval-request-new", handleApprovalRequestNew)
 	http.HandleFunc("/pengembalian", handlePengembalian)
-http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "✅ Backend Jalan di Railway!")
-})
 	fmt.Println("🚀 Server berjalan di http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", cors.AllowAll().Handler(http.DefaultServeMux)))
 }
