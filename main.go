@@ -1515,6 +1515,7 @@ func generateSuratPengembalian(form FormData, nomorUrut int, driveService *drive
 	pdfURL = fmt.Sprintf("https://drive.google.com/uc?id=%s", pdf.Id)
 	return pdfURL, docURL, nil
 }
+
 func handleRoot(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "✅ Backend Peminjaman Aktif di Railway!")
 }
